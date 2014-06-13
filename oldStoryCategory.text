@@ -1,0 +1,90 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: nburk
+  Date: 6/5/14
+  Time: 9:16 AM
+--%>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'userStory.label', default: 'UserStory')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+    <title></title>
+</head>
+
+<body>
+<h3>Story Category</h3><br>
+<p>choose a category that <strong>best fits</strong> what you want to talk about.<br />&nbsp; -This helps us share your story with people looking for what you have to say!</p>
+<form action="/UserStory/create" method="post"><div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>    <div id="mydiv"></div>
+    <div style="width: 800px; overflow: auto;">
+        <table>
+           <tr>
+                <td>
+                    <p>Quitting</p>
+                    <g:link controller="UserStory" action="create" id="quitting">Quitting Smoking and tobacco use</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Encouraging</p>
+                    <g:link controller="UserStory" action="create" id="encouraging">Encouraging loved ones to live tobacco free</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Exposure</p>
+                    <g:link controller="UserStory" action="create" id="exposure">Exposure to second hand smoke</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Loss</p>
+                    <g:link controller="UserStory" action="create" id="loss">Loss of life or qualityof life due to smoking or tobacco use</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Benefits</p>
+                    <g:link controller="UserStory" action="create" id="benefits">Immidiate and long term benefit of quitting</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Disparities</p>
+                    <g:link controller="UserStory" action="create" id="disparities">Health Disparities</g:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Other</p>
+                    <g:link controller="UserStory" action="create" id="other">Other tobacco related stories</g:link>
+                </td>
+            </tr>
+                <td style="padding-left:5em;" >
+
+                    <div id="divcatdetails" style="height:200px; width:350px;background-color:#f5f5f5;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label id="categorydetail"> </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    <input type="button" value="Next" id="btnnext"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+        </table>
+
+
+    </div>
+</form>
+
+</body>
+</html>
