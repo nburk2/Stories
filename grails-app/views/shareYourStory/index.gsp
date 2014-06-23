@@ -30,51 +30,69 @@
 </head>
 
 <body>
-
-<form action="category" method="post" onSubmit="return checkConditions()">
-    <input name="__RequestVerificationToken" type="hidden" value="aQbB4J1SqnKVkP8j_W8VU6AijW_pE8F7e492b1xLriopNEISulTqymNFJe02-cNlW0BnMXAxG8oqHk7x18fo9ej9wW8-ND66unBFScPFSrw1" /><p>
-    <strong>Ready to share your story?</strong></p>
-    <br />
-    <p><strong>Here's how it works</strong></p>
-    <p>
-        1. Read and accept the Terms and Conditions below<br />
-        2. Create your story using our Story Wizard, with optional images or video<br />
-    </p>
-    <br />
-    <p><strong>Get the word out</strong></p>
-    <p>
-        After you create your story:<br />
-        1. Share your story on our site, and your social media sites<br />
-        2. Download a free personalized infographic of your story to share<br />
-    </p>
-    <div style="padding-left: 30px;">
-        <p>*OPTION: You will have to option to create a free account, which is necessary if you want to edit or delete you story later.</p>
-        <br />
-
-        <div  style="width: 80em;">
-            <table>
-
-                    <p>Terms & Conditions</p>
-                    <p><a href="http://www.cdc.gov/other/privacy.html">View Privacy Policy</a></p>
-
-
-
-                        <textarea name="myTextBox" cols="200" rows="5" style="margin: 0px 0px 10px; width: 795px; height: 100px;">
-                           ${TermsAndConditions}
-                        </textarea>
-
-
-                <tr><td colspan="2" style="text-align:center;"><p style="display:inline;"><input type="checkbox" name="checkaccept" id="chkaccept" value="I Accept" />
-                    <label for="chkaccept">I Accept!</label> &nbsp;<input type="submit" value="I'm Ready!" id="btnsubmit"/></p> </td></tr>
-            </table>
-            <p id="flag" style="color:red"></p>
+    <div class="container" style="padding-top: 70px;">
+        <div class="col-md-12">
+        <div class="jumbotron hero-spacer">
+            <h1>Ready to share your story?</h1>
+            <p>Collaborate with hundreds of others to share inspiring stories that will encourage, strengthen and motivate
+                people in your past or current situation.
+            </p>
+        </div>
         </div>
 
-    </div>
-    <div>
+        <div class="clearfix"></div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Here's how it works
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ol><li>Read and accept the Terms and Conditions below</li>
+                        <li>Create your story using our Story Wizard, with optional images or video</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
 
-    </div>
-</form>
+            <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">Get the word out</div>
+                </div>
+                <div class="panel-body">
+                    <p>After your create your story:</p>
+                    <ol>
+                        <li>Share your story on our site, and your social media sites</li>
+                        <li>Download a free personalized infographic of your story to share</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title pull-left">Terms and Conditions</h3>
+                <h1 class="panel-title pull-right"><a href="http://www.cdc.gov/other/privacy.html">Views Privacy Policy</a></h1>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="category" method="post" onSubmit="return checkConditions()">
+                    <textarea class="form-control" rows="3">
+                        ${TermsAndConditions}
+                    </textarea>
 
+                    <div class="row col-lg-4 pull-right">
+                    <td colspan="2" style="text-align:center;"><p style="display:inline;"><input type="checkbox" name="checkaccept" id="chkaccept" value="I Accept" />
+                        <label for="chkaccept">I Accept!</label> &nbsp;<input type="submit" class="btn btn-md btn-success" value="I'm Ready!" id="btnsubmit"/></p> </td>
+                    <p id="flag" style="color:red"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 </html>

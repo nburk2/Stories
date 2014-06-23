@@ -1,5 +1,7 @@
 package wwyg
+import grails.plugins.springsecurity.Secured
 
+@Secured(["ROLE_ADMIN", "ROLE_USER"])
 class ShareYourStoryController {
 
     def categoryService
@@ -17,4 +19,6 @@ class ShareYourStoryController {
         render template:'content', model: [content:categoryService.getCategoryContent(params.id), category:params.id]
         println System.currentTimeMillis() - start
     }
+
+    def test(){ }
 }

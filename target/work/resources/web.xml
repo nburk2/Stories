@@ -15,6 +15,11 @@
     <param-name>sample</param-name>
     <param-value>Sample Value</param-value>
   </context-param>
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <async-supported>true</async-supported>
+  </filter>
 
     <filter>
         <filter-name>sitemesh</filter-name>
@@ -119,6 +124,12 @@
     <dispatcher>ERROR</dispatcher>
   </filter-mapping>
   <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>ERROR</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
     <filter-name>ResourcesDevModeFilter</filter-name>
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
@@ -217,9 +228,5 @@
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.gsp</welcome-file>
     </welcome-file-list>
-  <error-page>
-    <error-code>500</error-code>
-    <location>/grails-errorhandler</location>
-  </error-page>
 
 </web-app>

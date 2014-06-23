@@ -38,6 +38,10 @@ grails.mime.types = [ // the first one is the default format
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**']
 
+//stops CSS caching
+grails.resources.debug = true
+grails.resources.processing.enabled = false
+
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 
@@ -92,7 +96,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.serverURL = "http://wwyg.com"
+        grails.serverURL = "http://wwyg.com:8080/${appName}"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -120,3 +124,8 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'wwyg.authentication.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'wwyg.authentication.UserRole'
+grails.plugins.springsecurity.authority.className = 'wwyg.authentication.Role'
+grails.plugins.springsecurity.logout.afterLogoutUrl = "/userStory/home"

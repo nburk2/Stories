@@ -45,15 +45,18 @@ class CategoryService {
         resp.status
     }
 
+    //returns a random 5 stories
     def getCategoryContent(String catName){
         Collection content = cache.get(catName)
 
         if(content.size() > 5){
             return content[0..4].each{}
         }
-        else{
+        else if(content){
             return content[0..content.size()-1].each{}
         }
+        else
+            content
     }
     private doExpensiveGetTagRequest(String key){
         RestBuilder rest = new RestBuilder()

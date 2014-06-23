@@ -1,31 +1,85 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${createLinkTo(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <r:require module="jquery"/>
-        <g:layoutHead/>
-        <g:javascript library="jquery" />
-		<g:javascript library="application"/>
-		<r:layoutResources />
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<r:layoutResources />
-	</body>
+    <title>Bootstrap 101 Template</title>
+
+    <r:require module="jquery"/>
+    %{--<r:require modules="bootstrap"/>--}%
+
+    <r:require modules="application"/>
+    <g:layoutHead/>
+    <r:layoutResources/>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+        <div class = "container">
+            <div class = "navbar-header">
+                <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="${createLink(controller:'userStory', action:'home')}">
+                    Home
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                <ul class="nav navbar-nav">
+                    <li><a href="${createLink(controller:'userStory', action:'index')}">Stories</a></li>
+                    <li><a href="${createLink(controller:'shareYourStory', action:'index')}">Create Story</a></li>
+                    <sec:ifNotLoggedIn>
+                        <li><a href="${createLink(controller:'user', action:'createAccount')}">Create Account</a></li>
+                    </sec:ifNotLoggedIn>
+                    <sec:ifAnyGranted roles="ROLE_USER">
+                        <li><a href="${createLink(controller:'user', action:'accountDetails')}">Account Details</a></li>
+                    </sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <li><a href="${createLink(controller:'user', action:'adminDetails')}">Account Details</a></li>
+                    </sec:ifAnyGranted>
+                    <sec:ifNotLoggedIn>
+                        <li><a href="${createLink(controller:'userStory', action:'login')}">Login</a></li>
+                    </sec:ifNotLoggedIn>
+                    <sec:ifLoggedIn>
+                        <li>
+                            <a href="${createLink(controller:'logout', action:'index')}">Logout</a>
+                        </li>
+                    </sec:ifLoggedIn>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <li>
+                            <a href="${createLink(uri:'/')}">Admin Page</a>
+                        </li>
+                    </sec:ifAnyGranted>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <g:layoutBody/>
+    %{--<div class="footer" role="contentinfo"></div>--}%
+    %{--<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>--}%
+    <r:require modules="application"/>
+    <r:layoutResources/>
+    <style>
+        body {
+            padding-top: 10px;
+            padding-bottom: 40px;
+            background: url(http://www.pulsarwallpapers.com/data/media/3/Alien%20Ink%202560X1600%20Abstract%20Background.jpg) top center repeat;
+        }
+        table, th, td {
+            border: 1px solid black;
+            background-color: #f5f5f5;
+        }
+    </style>
+</body>
 </html>

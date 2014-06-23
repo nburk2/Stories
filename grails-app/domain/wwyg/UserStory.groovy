@@ -1,4 +1,5 @@
 package wwyg
+import wwyg.authentication.User
 
 class UserStory {
 
@@ -9,6 +10,8 @@ class UserStory {
     Date dateCreated
     Date lastUpdated
     String category
+
+    static belongsTo = [user:User]
 
     static constraints = {
         title blank: false, nullable: false, maxSize: 255

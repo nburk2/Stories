@@ -58,11 +58,16 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.52.1"
 
         //plugin for Bootstrap
-        compile ":twitter-bootstrap:3.1.1.3"
+        runtime ":twitter-bootstrap:3.1.1.3"
+        runtime ":fields:1.3"
+        //compile ":lesscss-resources:1.3.3"
 
         // plugins for the compile step
         compile ":scaffolding:2.0.3"
         compile ':cache:1.1.2'
+
+        //plugin for user login forms
+        compile ":spring-security-core:1.2.7.3"
 
         // plugin for wysiwyg
         compile ":ckeditor:4.4.1.0"

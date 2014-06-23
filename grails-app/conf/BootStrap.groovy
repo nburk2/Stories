@@ -1,5 +1,7 @@
 import grails.plugins.rest.client.RestBuilder
 import wwyg.*
+import wwyg.authentication.*
+
 
 class BootStrap {
 
@@ -11,7 +13,27 @@ class BootStrap {
 
     def init = { servletContext ->
         checkForCategories()
-        5.times{new UserStory(title: randomSentence(), author: randomName(), contactEmail: randomEmail(), story:randomParagraph(), category: tagItem()).save()}
+
+        def adminRole = Role.findOrSaveWhere(authority: "ROLE_ADMIN").save(flush: true)
+        def userRole = Role.findOrSaveWhere(authority: 'ROLE_USER').save(flush: true)
+
+        def user1 = User.findOrSaveWhere(username: "admin", password:'password', fName: "John", lName: "Jackson", email: "John@example.com")
+        user1.save(flush: true)
+        def user2 = User.findOrSaveWhere(username: "user", password: 'password', fName: "mike", lName: "Louis", email:"mike@example.com")
+        user2.save(flush:true)
+
+        //not sure what this line does
+        if( !user1.authorities.contains(adminRole)){
+            UserRole.create(user1, adminRole, true)
+        }
+        UserRole.create(user2, userRole, true)
+
+        //UserStory story1= new UserStory(title: randomSentence(), author: randomName(), contactEmail: randomEmail(), story:randomParagraph(), category: tagItem()).save()
+        //println story1
+
+        //creates 5 stories for a user
+        5.times{user1.addToStories(new UserStory(user:user1, title: randomSentence(), author: randomName(), contactEmail: randomEmail(), story:randomParagraph(), category: tagItem()).save())}
+        user1.save(flush:true)
 
     }
 

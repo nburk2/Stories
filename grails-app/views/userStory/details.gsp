@@ -8,65 +8,100 @@
     <title><g:message code="default.show.label" args="[entityName]" /></title>
 </head>
 <body>
-<a href="#show-userStory" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-    </ul>
-</div>
-<div id="title" class="content scaffold-show" role="main">
-    <h1>${userStoryInstance?.title}</h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
-    <ol class="property-list userStory">
+<div class="container" style="padding: 70px">
+    <h2>Story</h2>
+    <hr/>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title"
+                <h1>${userStoryInstance?.title}</h1>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12 col-md-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Body
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <g:if test="${userStoryInstance?.story}">
+                            ${raw(userStoryInstance.story)}
+                        </g:if>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-md-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                             Author
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <g:if test="${userStoryInstance?.author}">
 
-        <g:if test="${userStoryInstance?.story}">
-            <li class="fieldcontain">
+                            <span class="property-value" aria-labelledby="title-label">${userStoryInstance.author}</span>
 
-                ${raw(userStoryInstance.story)}
+                        </g:if>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            Email
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                    <g:if test="${userStoryInstance?.contactEmail}">
+                            <span class="property-value" aria-labelledby="contactEmail-label"><g:fieldValue bean="${userStoryInstance}" field="contactEmail"/></span>
+                    </g:if>
+                    </div>
+                </div>
+            </div>
 
-            </li>
-        </g:if>
+            <div class="clearfix"></div>
+            <div class="col-md-6 col-md-lg-6">
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <div class="panel-title">
+                           Date Created
+                       </div>
+                   </div>
+                   <div class="panel-body">
+                       <g:if test="${userStoryInstance?.dateCreated}">
+                           <li class="fieldcontain">
+                               <span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${userStoryInstance?.dateCreated}" /></span>
+                           </li>
+                       </g:if>
+                   </div>
+               </div>
+            </div>
+                <div class="col-md-6 col-md-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Date Created
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <g:if test="${userStoryInstance?.lastUpdated}">
+                                <li class="fieldcontain">
+                                    <span id="lastUpdated-label" class="property-label"><g:message code="userStory.lastUpdated.label" default="Last Updated" /></span>
 
-        <g:if test="${userStoryInstance?.author}">
-            <li class="fieldcontain">
-                <span id="title-label" class="property-label">By: </span>
+                                    <span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${userStoryInstance?.lastUpdated}" /></span>
 
-                <span class="property-value" aria-labelledby="title-label">${userStoryInstance.author}</span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${userStoryInstance?.contactEmail}">
-            <li class="fieldcontain">
-                <span id="contactEmail-label" class="property-label"><g:message code="userStory.contactEmail.label" default="Contact Email" /></span>
-
-                <span class="property-value" aria-labelledby="contactEmail-label"><g:fieldValue bean="${userStoryInstance}" field="contactEmail"/></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${userStoryInstance?.dateCreated}">
-            <li class="fieldcontain">
-                <span id="dateCreated-label" class="property-label"><g:message code="userStory.dateCreated.label" default="Date Created" /></span>
-
-                <span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${userStoryInstance?.dateCreated}" /></span>
-
-            </li>
-        </g:if>
-
-        <g:if test="${userStoryInstance?.lastUpdated}">
-            <li class="fieldcontain">
-                <span id="lastUpdated-label" class="property-label"><g:message code="userStory.lastUpdated.label" default="Last Updated" /></span>
-
-                <span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${userStoryInstance?.lastUpdated}" /></span>
-
-            </li>
-        </g:if>
-
-    </ol>
+                                </li>
+                            </g:if>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

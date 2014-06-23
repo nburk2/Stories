@@ -7,58 +7,63 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-<head>
-    <meta name="layout" content="main">
-    <g:set var="entityName" value="${message(code: 'userStory.label', default: 'UserStory')}" />
-    <title><g:message code="default.list.label" args="[entityName]" /></title>
-    <title></title>
-</head>
+    <head>
+        <meta name="layout" content="main">
+        <g:set var="entityName" value="${message(code: 'userStory.label', default: 'UserStory')}" />
+        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <title></title>
+    </head>
 
-<body>
+    <body>
+            <style>
+                table[id="content"]{
+                    float: right;
+                }
+                table[id="category"]{
 
-    <style>
-        table[id="content"]{
-            float: right;
-        }
-        table[id="category"]{
+                }
+            </style>
 
-        }
-    </style>
+        <div class="container" style="padding-top: 70px;">
+            <div class="jumbotron hero-spacer">
 
-<h3>Story Category</h3><br>
-<p>choose a category that <strong>best fits</strong> what you want to talk about.<br />&nbsp; -This helps us share your story with people looking for what you have to say!</p>
-<form action="/UserStory/create" method="get"><div class="validation-summary-valid" data-valmsg-summary="true"><ul><li style="display:none"></li>
-</ul></div>    <div id="mydiv"></div>
-    <div style="width: 800px; overflow: auto;">
-        <table>
-            <g:each in="${categoryList}" status="i" var="category">
+                <h1>Select a category below</h1>
+                <p>
+                    This helps us share your story with people looking for what you have to say!
+                </p>
+            </div>
 
-                <tr><td><p><g:link controller="shareYourStory" action="stories" id="${category}" elementId="${category}story">${category}</g:link></p></td></tr>
-                <r:script>
-                    $('#${category}story').click(function() {
-                        $('#divcatdetails').css("display", "display");
-                        $('#categorydetail').load(this.href); return false;
-                    });
-                </r:script>
-            </g:each>
+            <hr/>
+            <div class="clearfix"></div>
+            <form role="form" action="/UserStory/create" method="get">
+                        <div class="row text-center">
+                        <g:each in="${categoryList}" status="i" var="category">
 
-                <td id="divcatdetails" style="display:none;padding-left:5em;">
-                    <div style="height:450px; width:350px;background-color:#f5f5f5;">
+                            <div class="col-lg-3 col-md-6 hero" style="padding: 10px">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <g:link controller="shareYourStory" action="stories" id="${category}" elementId="${category}story">${category}</g:link>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <table id="content">
+                            <r:script>
+                                $('#${category}story').click(function() {
+                                    $('#divcatdetails').css("display", "display");
+                                    $('#divcatdetails').load(this.href); return false;
+                                });
+                            </r:script>
+                        </g:each>
+                        </div>
+                        <tr>
+                            <td>
+                                <g:link controller="UserStory" action="create"><input class="btn btn-md btn-success pull-right" type="button" value="Create your own story" id="btnnext"/></g:link>
+                            </td>
+                        </tr>
 
-                                    <label id="categorydetail"></label>
+                        <div class="panel panel-default" style="display:none" id="divcatdetails"/>
 
-                            <tr>
-                                <td>
-                                    <g:link controller="UserStory" action="create"><input type="button" value="Create your own story" id="btnnext"/></g:link>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
-           </table>
-    </div>
-</form>
-</body>
+            </form>
+        </div>
+    </body>
 </html>
